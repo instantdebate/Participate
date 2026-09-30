@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#171717" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Participate" />
+  <title>Participate</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div class="eyebrow">PARTICIPATE</div>
+      <h1>Do one thing today that makes you a participant in your life.</h1>
+      <p class="subhead">No streaks. No shame. No catching up. Just evidence that you showed up.</p>
+    </header>
+
+    <nav class="tabs" aria-label="App sections">
+      <button class="tab active" data-tab="today">Today</button>
+      <button class="tab" data-tab="board">Board</button>
+      <button class="tab" data-tab="memories">Memories</button>
+      <button class="tab" data-tab="reflect">Reflect</button>
+    </nav>
+
+    <section id="today" class="panel active">
+      <div class="today-card">
+        <div class="star-wrap">
+          <div id="todayStar" class="big-star" aria-label="Today's star">☆</div>
+          <div>
+            <div class="card-kicker">TODAY</div>
+            <h2 id="todayStatus">You haven't logged a participation moment yet.</h2>
+            <p id="todayCount" class="muted">One is enough.</p>
+          </div>
+        </div>
+
+        <figure class="friend-photo">
+          <img src="bryan-and-ryan.jpg" alt="Two friends together at a soccer match" />
+          <figcaption>A life worth participating in.</figcaption>
+        </figure>
+
+        <div class="category-grid" id="categoryGrid">
+          <button class="category" data-category="Create"><span>🎨</span><b>Create</b><small>Make something</small></button>
+          <button class="category" data-category="Move"><span>🚶</span><b>Move</b><small>Use your body</small></button>
+          <button class="category" data-category="Connect"><span>🤝</span><b>Connect</b><small>Be with someone</small></button>
+          <button class="category" data-category="Explore"><span>🧭</span><b>Explore</b><small>Go somewhere</small></button>
+          <button class="category" data-category="Improve"><span>🛠️</span><b>Improve</b><small>Make life better</small></button>
+        </div>
+
+        <div class="entry-box">
+          <label for="activityNote">What did you do?</label>
+          <textarea id="activityNote" rows="3" placeholder="Painted the sign. Walked to the park. Fixed the shelf. Called an old friend."></textarea>
+
+          <div class="alive-row">
+            <div>
+              <label>How alive did it make you feel?</label>
+              <div class="muted small">Optional. This helps you notice what actually works.</div>
+            </div>
+            <div class="alive-scale" id="aliveScale" aria-label="Alive rating">
+              <button data-rating="1">1</button>
+              <button data-rating="2">2</button>
+              <button data-rating="3">3</button>
+              <button data-rating="4">4</button>
+              <button data-rating="5">5</button>
+            </div>
+          </div>
+
+          <button id="logButton" class="primary" disabled>I participated</button>
+          <button id="notifyBryanToday" class="secondary notify-button" type="button">Notify Bryan</button>
+          <div class="muted small notify-note">Opens an email addressed to Bryan with your latest participation moment.</div>
+        </div>
+      </div>
+
+      <div class="mini-section">
+        <div class="section-title-row">
+          <h3>Badges</h3>
+          <span class="muted small">Earned by showing up, not by being perfect.</span>
+        </div>
+        <div id="badges" class="badges"></div>
+      </div>
+
+      <div class="quote-card">
+        <p>“The point isn't to have a perfect day. The point is to have a day you were actually in.”</p>
+      </div>
+    </section>
+
+    <section id="board" class="panel">
+      <div class="section-title-row">
+        <div>
+          <div class="card-kicker">STICKER BOARD</div>
+          <h2 id="monthTitle"></h2>
+        </div>
+        <div class="month-nav">
+          <button id="prevMonth" aria-label="Previous month">‹</button>
+          <button id="nextMonth" aria-label="Next month">›</button>
+        </div>
+      </div>
+      <div class="calendar-wrap">
+        <div class="weekday-row">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div id="calendar" class="calendar"></div>
+      </div>
+      <div class="month-summary">
+        <strong id="monthStars">0</strong>
+        <span>days participated this month</span>
+      </div>
+      <p class="muted small">Blank days stay blank. Nothing gets taken away.</p>
+    </section>
+
+    <section id="memories" class="panel">
+      <div class="section-title-row">
+        <div>
+          <div class="card-kicker">MEMORY</div>
+          <h2>Proof that you were here.</h2>
+        </div>
+        <button id="shareRecent" class="secondary">Notify Bryan</button>
+      </div>
+      <div id="memoryList" class="memory-list"></div>
+    </section>
+
+    <section id="reflect" class="panel">
+      <div class="reflection-card">
+        <div class="card-kicker">WEEKLY REFLECTION</div>
+        <h2>Notice what makes you feel alive.</h2>
+
+        <label for="aliveReflection">What made you feel most alive this week?</label>
+        <textarea id="aliveReflection" rows="4" placeholder="The thing I want to remember is..."></textarea>
+
+        <label for="moreReflection">What do you want more of next week?</label>
+        <textarea id="moreReflection" rows="4" placeholder="More time outside. More making. More people. Less scrolling."></textarea>
+
+        <button id="saveReflection" class="primary">Save reflection</button>
+        <div id="reflectionSaved" class="saved-message" role="status"></div>
+      </div>
+
+      <div class="mini-section">
+        <h3>Your pattern</h3>
+        <div id="patternSummary" class="pattern-grid"></div>
+      </div>
+
+      <details class="settings">
+        <summary>Data & settings</summary>
+        <div class="settings-body">
+          <p class="muted small">Your data stays in this browser on this device unless you export it.</p>
+          <div class="button-row">
+            <button id="exportData" class="secondary">Export data</button>
+            <label class="secondary file-button">
+              Import data
+              <input id="importData" type="file" accept="application/json" hidden />
+            </label>
+            <button id="clearData" class="danger">Clear all data</button>
+          </div>
+          <p class="support-note">This is a participation tool, not a crisis service. If you ever feel unsafe or think you may hurt yourself, contact someone you trust and get immediate help. In the U.S., call or text 988.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
